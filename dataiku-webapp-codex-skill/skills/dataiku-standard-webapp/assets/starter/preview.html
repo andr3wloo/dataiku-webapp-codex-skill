@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Standard WebApp fixture preview</title><link rel="stylesheet" href="style.css"><style>body{margin:0}</style></head><body>
+<div id="preview-root"></div>
+<script src="preview-fixture.js"></script>
+<script>
+fetch('body.html').then(r=>r.text()).then(html=>{document.getElementById('preview-root').innerHTML=html;const script=document.createElement('script');script.src='app.js';document.body.append(script);});
+</script>
+</body></html>

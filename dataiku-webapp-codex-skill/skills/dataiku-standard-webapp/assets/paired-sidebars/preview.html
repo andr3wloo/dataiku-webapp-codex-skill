@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paired sidebars · fixture preview</title><link rel="stylesheet" href="style.css"><style>body{margin:0}</style></head><body><div id="preview-root"></div>
+<script src="config.js"></script><script src="../starter/preview-fixture.js"></script><script src="panels.js"></script>
+<script>
+STANDARD_PREVIEW.config={...STANDARD_APP_CONFIG,configured:true,displayCap:5,evidenceCap:3,agent:{...STANDARD_APP_CONFIG.agent,enabled:true}};
+fetch('body.html').then(r=>r.text()).then(html=>{document.getElementById('preview-root').innerHTML=html;const script=document.createElement('script');script.src='../starter/app.js';document.body.append(script);});
+</script></body></html>

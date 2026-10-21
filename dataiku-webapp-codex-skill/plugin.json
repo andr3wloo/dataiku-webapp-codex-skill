@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "dataiku-standard-webapp",
+  "version": "0.1.0",
+  "description": "Build, patch, deploy, and visually validate native Dataiku Standard WebApps using HTML, CSS, JavaScript, and optional Python backends.",
+  "repository": "https://github.com/andr3wloo/dataiku-webapp-codex-skill",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Dataiku WebApp Builder",
+        "shortDescription": "Build and QA Dataiku WebApps",
+        "longDescription": "A reusable workflow for building, patching, deploying, and visually validating native Dataiku Standard WebApps. Includes architecture, design, deployment, QA guidance, starter templates, and helper scripts.",
+        "category": "Developer Tools",
+        "capabilities": [],
+        "defaultPrompt": "Use this plugin to build or patch a native Dataiku Standard WebApp."
+      }
+    }
+  }
+}

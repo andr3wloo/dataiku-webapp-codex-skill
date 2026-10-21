@@ -1,0 +1,33 @@
+<div id="standard-app">
+  <header class="masthead">
+    <div><p class="eyebrow">Decision workspace</p><h1 id="app-title">Published data</h1><p id="subtitle">Explore the evidence behind your next decision.</p></div>
+    <button id="agent-toggle" hidden aria-controls="agent-drawer" aria-expanded="false">Ask assistant</button>
+  </header>
+  <p id="preview-badge" class="notice" hidden>Fixture preview · synthetic data · session-only agent stub</p>
+  <div class="workspace" id="workspace">
+    <main id="dashboard">
+      <section class="filter-bar" aria-label="Filters">
+        <label>Category <select id="category"><option value="">All categories</option></select></label>
+        <button id="reset" class="secondary">Reset filters</button>
+        <span id="scope">All categories</span>
+      </section>
+      <p id="status" role="status" aria-live="polite">Configure a published data source to begin.</p>
+      <button id="retry" hidden>Try again</button>
+      <section id="results" hidden aria-label="Results">
+        <div class="kpis"><article><p>Filtered value</p><strong id="kpi-value"></strong></article><article><p>Matching records</p><strong id="kpi-count"></strong></article></div>
+        <section class="card"><h2>Value by category</h2><p class="hint">Select a category to focus the results.</p><div id="chart" class="chart" aria-label="Category chart"></div><p id="chart-cap" class="hint"></p></section>
+        <section class="card"><h2>Records</h2><p id="cap" class="hint"></p><div class="table-scroll" tabindex="0" role="region" aria-label="Published records"><table><thead><tr><th>Category</th><th>Value</th><th>Focus</th></tr></thead><tbody id="rows"></tbody></table></div><p id="selection" aria-live="polite"></p></section>
+      </section>
+    </main>
+    <aside id="agent-drawer" class="drawer" aria-labelledby="agent-title" hidden inert>
+      <header><h2 id="agent-title">Assistant</h2><button id="agent-close" aria-label="Close assistant">Close</button></header>
+      <p id="history-mode" class="notice">Session-only history</p>
+      <div class="agent-tools"><button id="new-chat">New chat</button><button id="inspect-context" aria-expanded="false" aria-controls="context">Inspect context</button></div>
+      <pre id="context" hidden tabindex="0"></pre>
+      <div id="starters" class="starters"></div>
+      <div id="thread" role="log" aria-live="polite" aria-label="Conversation"></div>
+      <p id="agent-status" role="status"></p>
+      <form id="composer"><label for="message">Question about these results</label><textarea id="message" maxlength="2000" required rows="3"></textarea><button id="send" type="submit">Send question</button></form>
+    </aside>
+  </div>
+</div>
