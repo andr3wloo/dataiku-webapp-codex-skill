@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Operating performance</title><meta name="review-provenance" content="Local fixture records and simulated assistant replies; no authenticated Dataiku connection.">
+<link rel="stylesheet" href="../starter/style.css"><style>body{margin:0}#review-notes{padding:.5rem 1rem;font:13px/1.5 system-ui;background:#fff;color:#172d3a}#review-notes p{margin:.25rem 0}</style></head>
+<body><details id="review-notes"><summary>Review notes</summary><p>Local fixture records and simulated assistant replies. No authenticated Dataiku connection. This disclosure belongs to the review harness and is excluded from the app editor files.</p><form method="get" aria-label="Review controls"><label>Data state <select name="state"><option value="normal">Normal</option><option value="error">Request failure</option><option value="missing-column">Missing column</option><option value="empty">Empty scope</option><option value="signed">Signed values</option></select></label> <label>Filter panel <select name="filters"><option value="on">Enabled</option><option value="off">Disabled</option></select></label> <label>Assistant <select name="agent"><option value="on">Enabled</option><option value="off">Disabled</option></select></label> <label>Question starters <select name="starters"><option value="draft">Draft</option><option value="send">Send immediately</option></select></label> <button type="submit">Apply review settings</button></form></details><div id="preview-root" role="status">Loading workspace…</div>
+<script src="../starter/preview-fixture.js"></script><script>
+const reviewParams = new URLSearchParams(location.search);
+for (const field of document.querySelectorAll('#review-notes select')) if (reviewParams.has(field.name)) field.value = reviewParams.get(field.name);
+(async function () {
+  const root = document.getElementById('preview-root');
+  try {
+    const response = await fetch('../starter/body.html');
+    if (!response.ok) throw new Error('HTML request failed (' + response.status + ')');
+    root.removeAttribute('role'); root.innerHTML = await response.text();
+    const script = document.createElement('script'); script.src = '../starter/app.js';
+    script.onerror = () => {root.textContent = 'Workspace script failed to load. Check the local server.';};
+    document.body.append(script);
+  } catch (error) {root.textContent = 'Workspace unavailable: ' + error.message;}
+})();
+</script></body></html>
