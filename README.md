@@ -2,7 +2,7 @@
 
 Build, update, and validate native Dataiku Standard WebApps with HTML, CSS, JavaScript, and an optional Python backend. This reusable skill includes design guidance, a configurable starter, local preview fixtures, deployment helpers, and regression tests.
 
-The installable folder is [`dataiku-webapp-codex-skill/skills/dataiku-standard-webapp`](dataiku-webapp-codex-skill/skills/dataiku-standard-webapp/). Copy the complete folder, including its references and assets.
+This repository is the `dataiku-standard-webapp` skill. `SKILL.md` is at the root alongside its references, scripts, assets, tests, and UI metadata.
 
 ## Install with Codex
 
@@ -10,7 +10,7 @@ Paste this into Codex after the update is merged into `main`:
 
 ```text
 Use $skill-installer to install this skill from:
-https://github.com/andr3wloo/dataiku-webapp-codex-skill/tree/main/dataiku-webapp-codex-skill/skills/dataiku-standard-webapp
+https://github.com/andr3wloo/dataiku-webapp-codex-skill/tree/main
 ```
 
 The skill installer refuses to overwrite an existing installation. To upgrade, first back up the installed `dataiku-standard-webapp` folder outside your active skills directory, then remove that installation and install the new version. Preserve any personal changes you want to reapply.
@@ -19,7 +19,7 @@ The installed skill is available on your next turn. Invoke `$dataiku-standard-we
 
 ## Manual installation
 
-Download and extract this repository. From its extracted root, copy `dataiku-webapp-codex-skill/skills/dataiku-standard-webapp` into your Codex skills directory:
+Download and extract this repository. From its extracted root, copy the entire extracted repository contents into a folder named `dataiku-standard-webapp` in your Codex skills directory:
 
 - Default: `~/.codex/skills/dataiku-standard-webapp`
 - Custom Codex home: `$CODEX_HOME/skills/dataiku-standard-webapp`
@@ -30,9 +30,9 @@ The destination must contain `SKILL.md` directly, alongside `agents/`, `assets/`
 
 - Codex with access to local files and a terminal for assembling and serving previews.
 - Python 3 for the included helpers and local HTTP preview. Node.js is needed for JavaScript validation by the definition merger and for JavaScript regression tests.
-- For connected Dataiku work: a configured /Dataiku-Headless connection and/or an authenticated browser session permitted for the target instance. The default route uses Dataiku-Headless first, then the user-selected browser for uncovered operations and rendered validation. Explicitly name your preferred browser in the request.
+- For connected Dataiku work: a configured Dataiku-Headless connection and/or an authenticated browser session permitted for the target instance. The default route uses Dataiku-Headless first, then the user-selected browser for uncovered operations and rendered validation. Explicitly name your preferred browser in the request.
 - For a Python-backed WebApp: a verified DSS environment with Dataiku, pandas, and Flask available. Static apps do not need a Python backend.
-- /Impeccable is optional. Bundled design guidance remains usable without it. Agent invocation and durable chat history require additional configuration only when those features are requested.
+- Impeccable is optional. Bundled design guidance remains usable without it. Agent invocation and durable chat history require additional configuration only when those features are requested.
 
 No credentials, customer connection settings, or personal filesystem paths are supplied by this package. Configure access in your own environment. Without authenticated Dataiku access, the skill can deliver local previews, editor files, and manual setup instructions; live deployment remains unverified.
 
@@ -64,7 +64,7 @@ The workflow inspects the target and data contract, prepares a live local previe
 Run from the repository root, choosing a new output directory:
 
 ```sh
-python3 dataiku-webapp-codex-skill/skills/dataiku-standard-webapp/scripts/assemble_sidebar_template.py --output work/webapp-preview
+python3 scripts/assemble_sidebar_template.py --output work/webapp-preview
 python3 -m http.server 8765 --bind 127.0.0.1 --directory work/webapp-preview
 ```
 
@@ -74,7 +74,7 @@ The native editor sources are `body.html`, `style.css`, `app.js`, and optional `
 
 ## Validate changes
 
-From the skill folder:
+From the repository root:
 
 ```sh
 python3 -m unittest discover -s tests -p 'test_*.py'
