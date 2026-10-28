@@ -16,9 +16,8 @@ class AssemblyTests(unittest.TestCase):
             output = Path(temporary) / 'preview'
             assembly.assemble(output)
             self.assertEqual((output / 'backend.py').read_bytes(), (ROOT / 'assets/starter/backend.py').read_bytes())
-            expected = '\n\n'.join((ROOT / path).read_text() for path in (
-                'assets/paired-sidebars/config.js', 'assets/paired-sidebars/panels.js', 'assets/starter/app.js'))
-            self.assertEqual((output / 'app.js').read_text(), expected)
+            for name in ('body.html', 'style.css', 'app.js', 'preview.html', 'preview-fixture.js'):
+                self.assertEqual((output / name).read_bytes(), (ROOT / 'assets/starter' / name).read_bytes())
             from html.parser import HTMLParser
             dependencies = []
             class Parser(HTMLParser):
@@ -36,3 +35,20 @@ class AssemblyTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 assembly.assemble(output)
             self.assertEqual((output / 'body.html').read_text(), 'user edits')
+
+    def test_paired_entrypoint_uses_canonical_starter_and_no_duplicate_sources(self):
+        from html.parser import HTMLParser
+        paired = ROOT / 'assets/paired-sidebars'
+        dependencies = []
+        class Parser(HTMLParser):
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                value = attrs.get('src') or (attrs.get('href') if tag == 'link' else None)
+                if value:
+                    dependencies.append(value)
+        Parser().feed((paired / 'preview.html').read_text())
+        for name in dependencies:
+            resolved = (paired / name).resolve()
+            self.assertEqual(resolved.parent, (ROOT / 'assets/starter').resolve())
+            self.assertTrue(resolved.is_file())
+        self.assertFalse(any((paired / name).exists() for name in ('body.html', 'style.css', 'config.js', 'panels.js')))
