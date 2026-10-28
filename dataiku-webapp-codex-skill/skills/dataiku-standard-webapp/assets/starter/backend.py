@@ -30,7 +30,7 @@ def register_agent_adapter(adapter, identity_resolver=None, folder=None):
 
 
 def dataiku_agent_adapter(message, context, previous_turns):
-    """SDK pattern inherited from the Streamlit skill; verify on the target DSS."""
+    """Dataiku agent SDK adapter; verify on the target DSS."""
     project = dataiku.api_client().get_project(dataiku.default_project_key())
     completion = project.get_agent(CONFIG['agent_id']).as_llm().new_completion()
     completion.with_context({'dashboard_context': context})
