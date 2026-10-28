@@ -1,27 +1,12 @@
 # Dataiku Standard WebApp Skill
 
-A Codex skill for building, updating, and checking native Dataiku Standard WebApps.
+The installable skill is [`dataiku-standard-webapp/`](dataiku-standard-webapp/). Copy the complete folder, including its references, scripts, assets, tests, and UI metadata.
 
-The repository should contain this `README.md` and `skills/dataiku-standard-webapp/` at its root.
+See the [repository README](../../README.md) for installation, upgrades, requirements, example requests, local preview, and validation instructions.
 
-## Install in Codex
-
-In a Codex chat, ask:
+Install from this exact repository path:
 
 ```text
 Use $skill-installer to install this skill from:
-https://github.com/andr3wloo/dataiku-webapp-codex-skill/tree/main/skills/dataiku-standard-webapp
+https://github.com/andr3wloo/dataiku-webapp-codex-skill/tree/main/dataiku-webapp-codex-skill/skills/dataiku-standard-webapp
 ```
-
-Start a new chat after installation. Invoke the skill with `$dataiku-standard-webapp` or describe the Dataiku Standard WebApp task.
-
-## Manual install
-
-Download this repository, then copy `skills/dataiku-standard-webapp` into your Codex skills folder:
-
-- macOS/Linux: `~/.codex/skills/dataiku-standard-webapp`
-- If `CODEX_HOME` is set: `$CODEX_HOME/skills/dataiku-standard-webapp`
-
-The skill folder includes its instructions and supporting references, scripts, starter assets, and UI metadata. No plugin manifest or marketplace setup is used.
-
-For live Dataiku work, you also need access to a configured Dataiku Headless connection or a browser logged into the target instance.
