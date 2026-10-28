@@ -1,0 +1,33 @@
+<div id="standard-app" class="paired-sidebars">
+  <a class="skip-link" href="#dashboard">Skip to dashboard</a>
+  <header class="masthead"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 8.5h14.5a4 4 0 0 1 4 4V24M9 4.5h14.5a4 4 0 0 1 4 4V20M5 13h14.5a4 4 0 0 1 4 4v10.5H9a4 4 0 0 1-4-4z"/></svg></span><h1 id="app-title">Operating performance</h1></div><span id="source-summary" class="source-status" hidden></span></header>
+  <nav class="toolbar" aria-label="Workspace controls"><button id="filter-toggle" class="secondary" aria-controls="filter-panel" aria-expanded="true"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></svg><span>Filters</span></button><span class="page-tab" aria-current="page">Overview</span><button id="agent-toggle" aria-controls="agent-drawer" aria-expanded="false" hidden><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-3 2v-6.5A7.5 7.5 0 0 1 11.5 7h1A7.5 7.5 0 0 1 20 14z"/><path d="M8.5 12h7M8.5 15.5h4"/></svg><span id="agent-toggle-label">Ask assistant</span></button></nav>
+  <div class="workspace" id="workspace">
+    <aside id="filter-panel" class="side-panel" aria-labelledby="filter-title">
+      <header class="panel-header"><h2 id="filter-title">Filters</h2><button id="filter-close" class="icon-button secondary" aria-label="Collapse filters"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></svg></button></header>
+      <div class="panel-scroll"><details class="filter-group" open><summary>Category</summary><label for="category">Category</label><select id="category"><option value="">All categories</option></select></details><button id="reset" class="secondary reset">Reset scope</button></div>
+      <div id="filter-resizer" class="resizer" role="separator" tabindex="0" aria-label="Resize filters" aria-orientation="vertical" aria-valuemin="200" aria-valuemax="400" aria-valuenow="248" aria-controls="filter-panel"></div>
+    </aside>
+    <main id="dashboard" tabindex="-1">
+      <div class="page-heading"><h2 id="page-title">Overview</h2><p id="subtitle" class="hint" hidden></p><p class="scope-line"><span class="scope-label">Current scope</span><span id="scope" class="scope-chip">All categories</span><button id="scope-reset" class="secondary" hidden>Reset scope</button></p></div>
+      <div class="dashboard-content"><p id="status" role="status" aria-live="polite">Configure a published data source to begin.</p><button id="retry" hidden>Try again</button>
+        <section id="results" aria-label="Results" hidden>
+          <section class="kpis" aria-label="Scope summary"><article><p>Filtered value</p><strong id="kpi-value"></strong></article><article><p>Matching records</p><strong id="kpi-count"></strong></article></section>
+          <section class="card"><h2>Value by category</h2><p id="chart-guidance" class="hint">Select a category to focus this scope.</p><div id="chart" class="chart" aria-label="Category chart"></div><p id="chart-cap" class="hint"></p></section>
+          <section class="card"><h2>Records</h2><p id="cap" class="hint"></p><div class="table-scroll" tabindex="0" role="region" aria-label="Records"><table><thead><tr><th>Category</th><th>Value</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div><p id="selection" aria-live="polite"></p></section>
+        </section>
+      </div>
+    </main>
+    <aside id="agent-drawer" class="side-panel drawer" aria-labelledby="agent-title" hidden inert>
+      <header class="panel-header"><div><h2 id="agent-title">Assistant</h2><p id="history-mode" class="hint">Session-only history</p></div><button id="agent-close" class="icon-button secondary" aria-label="Collapse assistant"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7"/></svg></button></header>
+      <div class="panel-scroll agent-scroll"><h3 class="welcome">What would you like to investigate?</h3><div id="starters" class="starters"></div>
+        <button id="inspect-context" class="context-toggle secondary" aria-expanded="false" aria-controls="context-details">Context shared with the agent</button>
+        <section id="context-details" hidden aria-label="Agent context inspection"><p class="hint">Current browser scope (proposed)</p><pre id="context" tabindex="0"></pre><p id="context-receipt-label" class="hint">No question submitted yet.</p><pre id="context-receipt" tabindex="0"></pre></section>
+        <div id="thread" role="log" aria-live="polite" aria-label="Conversation"></div><p id="agent-status" role="status"></p>
+      </div>
+      <form id="composer"><label class="sr-only" for="message">Question about these results</label><textarea id="message" maxlength="2000" required rows="3" placeholder="Ask about this scope…"></textarea><div class="composer-tools"><button id="new-chat" type="button" class="icon-button secondary" aria-label="Start a new chat"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button><span id="composer-agent-name" class="hint">Assistant</span><button id="send" type="submit" class="icon-button" aria-label="Send question"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M6.5 10.5 12 5l5.5 5.5"/></svg></button></div><p class="hint composer-hint">Enter to send · Shift+Enter for a new line</p></form>
+      <div id="agent-resizer" class="resizer" role="separator" tabindex="0" aria-label="Resize assistant" aria-orientation="vertical" aria-valuemin="280" aria-valuemax="520" aria-valuenow="320" aria-controls="agent-drawer"></div>
+    </aside>
+    <button id="panel-scrim" hidden tabindex="-1" aria-label="Close sidebar"></button>
+  </div>
+</div>
