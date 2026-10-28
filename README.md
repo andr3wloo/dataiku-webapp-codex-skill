@@ -30,9 +30,9 @@ The destination must contain `SKILL.md` directly, alongside `agents/`, `assets/`
 
 - Codex with access to local files and a terminal for assembling and serving previews.
 - Python 3 for the included helpers and local HTTP preview. Node.js is needed for JavaScript validation by the definition merger and for JavaScript regression tests.
-- For connected Dataiku work: a configured Dataiku-Headless connection and/or an authenticated browser session permitted for the target instance. The default route uses Dataiku-Headless first, then the user-selected browser for uncovered operations and rendered validation. Explicitly name your preferred browser in the request.
+- For connected Dataiku work: a configured /Dataiku-Headless connection and/or an authenticated browser session permitted for the target instance. The default route uses Dataiku-Headless first, then the user-selected browser for uncovered operations and rendered validation. Explicitly name your preferred browser in the request.
 - For a Python-backed WebApp: a verified DSS environment with Dataiku, pandas, and Flask available. Static apps do not need a Python backend.
-- Impeccable is optional. Bundled design guidance remains usable without it. Agent invocation and durable chat history require additional configuration only when those features are requested.
+- /Impeccable is optional. Bundled design guidance remains usable without it. Agent invocation and durable chat history require additional configuration only when those features are requested.
 
 No credentials, customer connection settings, or personal filesystem paths are supplied by this package. Configure access in your own environment. Without authenticated Dataiku access, the skill can deliver local previews, editor files, and manual setup instructions; live deployment remains unverified.
 
