@@ -1,6 +1,6 @@
 # Design agreement, preview, and acceptance
 
-Read for new apps and changes to appearance, layout, navigation, or visible interaction. This is the user's default workflow: confirm design through a rendered preview before Cobuild handoff or live Dataiku changes. Existing target authorization does not constitute approval of an unseen design. Reuse explicit approval already given for the same preview; the user can explicitly override this workflow.
+Read for new apps and changes to appearance, layout, navigation, or visible interaction. The default workflow is to confirm design through a rendered preview before Cobuild handoff or live Dataiku changes. Existing target authorization does not constitute approval of an unseen design. Reuse explicit approval already given for the same preview; the user can explicitly override this workflow.
 
 ## Make choices reviewable
 
@@ -14,8 +14,8 @@ Propose sensible values when information is missing and label them as proposed. 
 
 ## Render, approve, then adapt
 
-1. Build a working local HTML/CSS/JS preview with realistic, clearly labeled fixtures matching the known schema, units, and content lengths. Use authorized data only; keep credentials out. Keep fixture transport separate from production. Read-only inspection of Dataiku may happen during preparation.
-2. Serve the preview over loopback HTTP and open its live URL in @Browser (see below). Keep the server available while the user reviews it. Open the preview in the browser and inspect actual rendering and core interactions. An HTML file, wireframe, generated illustration, or unrendered source is insufficient. Show the user the interactive preview plus screenshots of the main desktop view and narrow layout; cover materially distinct pages and a relevant nonideal state. Record a local revision identifier and the source files it represents.
+1. Build a working local HTML/CSS/JS preview with realistic fixtures, disclosed in the separate review harness, matching the known schema, units, and content lengths. Use authorized data only; keep credentials out. Keep fixture transport separate from production. Read-only inspection of Dataiku may happen during preparation.
+2. Serve the preview over loopback HTTP and open its live URL in the user-selected browser (see below). Keep the server available while the user reviews it. Open the preview in the browser and inspect actual rendering and core interactions. An HTML file, wireframe, generated illustration, or unrendered source is insufficient. Show the user the interactive preview plus screenshots of the main desktop view and narrow layout; cover materially distinct pages and a relevant nonideal state. Record a local revision identifier and the source files it represents.
 3. Recommend Impeccable critique and polish as starting points, and invite the user to trigger `$impeccable` against this URL/revision for its context-specific recommendations, following [Impeccable integration](impeccable.md). Let Impeccable route the work rather than enforcing a fixed sequence. Apply authorized recommendations locally and refresh the preview revision before approval. Request explicit approval of that revision, palette, fonts, navigation, and layout. While approval is pending, continue independent read-only inspection or preparation. Do not send the design to CoBuild or change the live WebApp. Time elapsed, silence, or a generic earlier request to build an app is not preview approval.
 4. After approval, adapt the design to native Standard files: HTML fragment, raw CSS, raw JS, optional Python. The prototype may already use that structure; avoid a gratuitous rewrite. When using CoBuild, pass the approved design, tokens, screenshots, page map, and data contract as its acceptance reference. CoBuild is a supported implementation route within the already authorized app task; using it requires no separate permission.
 5. Render a local wrapper loading the actual final editor files, with only the data transport mocked. Recheck colors, loaded/fallback fonts, page anchors, layout, and interactions against the approved preview. Fix drift before a live write; do not rely on screenshots of an earlier prototype. Material visible revisions need a fresh preview and approval; faithful adaptation and invisible implementation fixes reuse the existing approval.
@@ -31,9 +31,9 @@ Copy/adapt the starter into a task-owned directory; do not edit the installed sk
 python3 -m http.server 8765 --bind 127.0.0.1 --directory work/webapp-preview
 ```
 
-Use a free port if occupied; never terminate an unrelated server. Serve only the preview directory, keeping credentials, raw definitions, and rollback files outside it. Open `http://127.0.0.1:8765/preview.html` in @Browser and verify a successful load and functioning controls. Share that clickable URL and the preview revision with the user. Keep the terminal/server alive across the approval pause; record its session and directory so it can be resumed. Preserve the preview tab across turns with the browser’s handoff/persistence feature when available so the user can inspect it after the turn ends. Refresh/recheck the same URL after edits and identify the new revision. Stop the server when review/integration is complete or the user requests it. A short-lived test harness that exits after screenshots is not the user's live preview.
+Use a free port if occupied; never terminate an unrelated server. Serve only the preview directory, keeping credentials, raw definitions, and rollback files outside it. Open `http://127.0.0.1:8765/preview.html` in the user-selected browser and verify a successful load and functioning controls. Share that clickable URL and the preview revision with the user. Keep the terminal/server alive across the approval pause; record its session and directory so it can be resumed. Preserve the preview tab across turns with the browser’s handoff/persistence feature when available so the user can inspect it after the turn ends. Refresh/recheck the same URL after edits and identify the new revision. Stop the server when review/integration is complete or the user requests it. A short-lived test harness that exits after screenshots is not the user's live preview.
 
-The wrapper must load the canonical editor files with only transport/fixtures mocked. `file://` cannot reliably load the fetched HTML fragment. If @Browser cannot reach loopback, diagnose the route; explain the blocker and leave deployment pending rather than calling a screenshot or an unopened URL a live preview. Use a different preview mechanism only when the user instructs it.
+The wrapper must load the canonical editor files with only transport/fixtures mocked. `file://` cannot reliably load the fetched HTML fragment. If the user-selected browser cannot reach loopback, diagnose the route; explain the blocker and leave deployment pending rather than calling a screenshot or an unopened URL a live preview. Use a different preview mechanism only when the user instructs it.
 
 ## Page and section anchors
 
@@ -54,6 +54,17 @@ Accessibility reference: [W3C WCAG 2.2 quick reference](https://www.w3.org/WAI/W
 
 ## Compact chrome and sticky subsection navigation
 
-Keep instructional/development commentary in the review brief, not scattered through the operational UI. Use a compact scope indicator and actionable data-quality states. Fixtures still need a truthful local preview label; a requested removal of a large banner can use a smaller indicator without passing fixtures off as live data.
+Keep instructional/development commentary in the review brief, not scattered through the operational UI. Use a compact scope indicator and actionable data-quality states. Disclose fixtures in the separate review harness and delivery record, outside the app root; see [product copy](product-copy.md). Never insert a fixture/demo/preview banner into the canonical editor HTML, and never claim that removing review labels establishes a live connection.
 
 When subsection navigation is sticky, give it an opaque full-width surface aligned to the actual scroll pane, including its padding. Check the top and side gaps while a chart scrolls under the bar; a solid background on only the text's content box is insufficient. Account for the bar's rendered height and pane padding when scrolling to targets, preserve keyboard focus, and disable animated jumps under reduced motion. If scrollbars are hidden by design, preserve wheel/touch/keyboard scrolling and a keyboard-focusable scroll region. Use a small centered vector icon for compact icon buttons rather than relying on a font glyph's baseline.
+
+## Focused annotation and production UI feedback
+
+Treat browser annotations and selected elements as acceptance criteria. Translate them into a short checklist and verify those elements in the preview and deployed app; do not broaden unrelated work.
+
+- Preserve the company identity supplied by the project/source; do not substitute a customer brand based on audience or add “Prepared for …” unless requested.
+- Keep the hero description to one concise sentence; remove filler and copy that restates visible controls.
+- Show the accurate source dataset and dynamic record count. Put precise, actionable availability/model states beside the affected view instead of vague badges such as “Partial”.
+- Follow [product copy and provenance](product-copy.md), keeping test provenance outside the app root. Removing labels does not establish production data.
+- If an assistant is present, offer task-specific sample questions that populate the composer without submitting. Browser QA must not invoke a live agent unless requested.
+- Tighten excess whitespace modestly while preserving grouping and touch targets.
